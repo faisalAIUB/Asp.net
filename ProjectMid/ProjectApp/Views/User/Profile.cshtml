@@ -1,0 +1,32 @@
+﻿@model List<ProjectRepository.RentAd>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Profile</title>
+</head>
+<body>
+    <div> 
+        @Html.ActionLink("EditProfile", "EditProfile", new { id = Session["id"] })
+
+        @Html.ActionLink("Upload Ad", "UploadAd","Rent" )
+        <form method="post">
+            @Session["id"]
+            @foreach (ProjectRepository.RentAd r in @Model)
+            {
+                
+                <a href="@Url.Action("Edit","Rent", new {id=r.RentId })">HouseNo: @r.HouseNo RoadNo: @r.RoadNo </a> <a href="@Url.Action("Delete", "Rent", new { id = r.RentId })">Delete</a> <br/>
+                
+
+            }
+
+            <input type="submit" name="Logout" value="LogOut"/>
+        </form>
+    </div>
+</body>
+</html>
